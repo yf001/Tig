@@ -9,14 +9,14 @@ use Tig\MainClass;
 class Account{
 	private $account;
 
-    public function __construct(){
+	public function __construct(){
 		$dataFolder = Server::getInstance()->getPluginManager()->getPlugin("Tig")->getDataFolder();
 		if(!file_exists($dataFolder)) {
 			@mkdir($dataFolder, 0744, true);
 		}
 		$this->account = new Config($dataFolder."account.yml", Config::YAML, array());
 	}
-	
+
 	//アカウントの作成
 	public function createAccount($user) {
 		if(!$this->account->exists($user)){
@@ -24,8 +24,8 @@ class Account{
 			$this->account->save();
 		}
 		return true;
-    }
-	
+	}
+
 	//アカウントから情報取得
 	public function getAccount($user){
 		if($this->account->exists($user)){
@@ -34,7 +34,7 @@ class Account{
 			return false;
 		}
 	}
-	
+
 	//アカウントからポイントを取得
 	public function getPoint($user){
 		if($this->account->exists($user)){
@@ -44,7 +44,7 @@ class Account{
 			return false;
 		}
 	}
-	
+
 	//ポイント付与
 	public function grantPoint($user,$amount){
 		$npt = $this->account->get($user)['pt'];
@@ -53,7 +53,7 @@ class Account{
 		$this->account->save();
 		return true;
 	}
-	
+
 	//ポイントマイナス
 	public function minusPoint($user,$amount){
 		$npt = $this->account->get($user)['pt'];
