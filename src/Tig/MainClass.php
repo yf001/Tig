@@ -29,6 +29,7 @@ class MainClass extends PluginBase implements Listener {
         $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);//イベント登録
 		$this->status = true;//デフォルトで有効に
+		$this->Account = new Account();
     }
 	
     //サーバー停止時の処理//プラグインが無効になると実行されるメソッド
@@ -40,14 +41,15 @@ class MainClass extends PluginBase implements Listener {
 	//ログイン
 	public function onLogin(PlayerLoginEvent $event){
 		if($this->status = true){
-			Account::API()->createAccount($event->getPlayer()->getName(),$event->getPlayer()->getAddress());
+			//Account::API()->createAccount($event->getPlayer()->getName(),$event->getPlayer()->getAddress());
+			$this->Account->createAccount($event->getPlayer()->getName(),$event->getPlayer()->getAddress());
 		}
 	}
 	//プレーヤー入室
 	public function onJoin(PlayerJoinEvent $event){
 		if($this->status = true){
 			$player = $event->getPlayer();
-			$event->setJoinMessage($player->getName."さんが参加しました!");
+			$event->setJoinMessage($player->getName()."さんが参加しました!");
 		}
 	}
 	//プレーヤーダメージ

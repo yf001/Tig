@@ -7,10 +7,9 @@ use pocketmine\utils\Config;
 use Tig\MainClass;
 
 class Account{
-	private static $api = null;
+	private $account;
 
     public function __construct(){
-		self::$instance = $this;
 		$dataFolder = Server::getInstance()->getPluginManager()->getPlugin("Tig")->getDataFolder();
 		if(!file_exists($dataFolder)) {
 			@mkdir($dataFolder, 0744, true);
@@ -18,14 +17,10 @@ class Account{
 		$this->account = new Config($dataFolder."account.yml", Config::YAML, array());
 	}
 	
-	public function API(){
-		return self::$instance;
-	}
-	
 	//アカウントの作成
 	public function createAccount($user) {
 		if(!$this->account->exists($user)){
-			$this->account->set($user,array("pt" => 0, "win" => 0, "lose" => 1, "exp" => 0,));
+			$this->account->set($user,array("pt" => 0, "win" => 0, "lose" => 0, "exp" => 0,));
 			$this->account->save();
 		}
 		return true;
