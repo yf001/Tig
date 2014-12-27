@@ -1,0 +1,33 @@
+name: Tig
+api: 1.8.0
+version: 1.1.0
+author: yf001
+main: Tig\MainClass
+
+commands:
+  pvp:
+    description: "鬼ごっこの管理コマンドです。"
+    usage: "/pvp help"
+    permission: "pvp.command.pvp"
+  buy:
+    description: "アイテムを買うことができます"
+    usage: "/pvp help"
+    permission: "pvp.command.pvp"
+  stat:
+    description: "自分のステータスを見れます"
+    usage: "/pvp help"
+    permission: "pvp.command.pvp"
+permissions:
+  pvp.command:
+    default: op
+    description: "PvPPlus"
+    children:
+    pvp.command.pvp:
+       default: op
+       description: "Tigの管理コマンドを使えるように"
+    pvp.command.buy:
+       default: true
+       description: "アイテム購入"
+    pvp.command.stat:
+       default: true
+       description: "ステータスを見れます"
