@@ -33,14 +33,26 @@ class MainClass extends PluginBase implements Listener {
 	//以下イベント処理
 	
 	//ログイン
-	
-	
+	public function onLogin(PlayerLoginEvent $event){
+		if($this->status = true){
+			Account::API()->createAccount($event->getPlayer()->getName(),$event->getPlayer()->getAddress());
+		}
+	}
 	//プレーヤー入室
-	
+	public function onJoin(PlayerJoinEvent $event){
+		if($this->status = true){
+			$player = $event->getPlayer();
+			$event->setJoinMessage($player->getName."さんが参加しました!");
+		}
+	}
 	//プレーヤーダメージ
-	
+	public function onDamage(EntityDamageByEntityEvent $event){
+		$this->damager = $event->getDamager()->getName(); //そのダメージを与えた人
+		$this->s = $event->getEntity()->getName();//喰らった人
+		//処理
+	}
 	//プレーヤー死亡
-	
+	//あとで
 	
 	//コマンド処理
 	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {

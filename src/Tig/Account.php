@@ -23,7 +23,7 @@ class Account{
 	}
 	
 	//アカウントの作成
-	public function craftAccount($user) {
+	public function createAccount($user) {
 		if(!$this->account->exists($user)){
 			$this->account->set($user,array("pt" => 0, "win" => 0, "lose" => 1, "exp" => 0,));
 			$this->account->save();
