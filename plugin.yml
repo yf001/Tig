@@ -5,17 +5,17 @@ author: yf001
 main: Tig\MainClass
 
 commands:
-  pvp:
+  tig:
     description: "鬼ごっこの管理コマンドです。"
-    usage: "/pvp help"
+    usage: "/tig help"
     permission: "pvp.command.pvp"
   buy:
     description: "アイテムを買うことができます"
-    usage: "/pvp help"
+    usage: "/buy"
     permission: "pvp.command.pvp"
   stat:
     description: "自分のステータスを見れます"
-    usage: "/pvp help"
+    usage: "/stat"
     permission: "pvp.command.pvp"
 permissions:
   pvp.command:
