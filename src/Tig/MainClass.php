@@ -39,7 +39,7 @@ class MainClass extends PluginBase implements Listener {
 	//コマンド処理
 	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
 		switch (strtolower($command->getName())) {
-			case "pvp":
+			case "tig":
 				if(!isset($args[0])){return false;}//例外回避
 				switch ($args[0]) {
 					case "start":
