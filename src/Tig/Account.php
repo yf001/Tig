@@ -53,7 +53,7 @@ class Account{
 	//ポイント付与
 	public function grantPoint($user,$amount){
 		$npt = $this->account->get($user)['pt'];
-		$npt += $grant;
+		$npt += $amount;
 		$this->account->set($user, array_merge($this->account->get($user), array('pt' => $npt)));
 		$this->account->save();
 		return true;
@@ -61,12 +61,12 @@ class Account{
 	
 	//ポイントマイナス
 	public function minusPoint($user,$amount){
-		$pt = $this->account->get($user)['pt'];
-		$pt -= $pt;
+		$npt = $this->account->get($user)['pt'];
+		$npt -= $pt;
 		if($npt < 0){
 			return false;
 		}
-		$this->account->set($user, array_merge($this->account->get($user), array('pt' => $pt)));
+		$this->account->set($user, array_merge($this->account->get($user), array('pt' => $npt)));
 		$this->account->save();
 		return true;
 	}
@@ -74,24 +74,24 @@ class Account{
 	//勝利
 	public function grantWin($user){
 		$win = $this->account->get($user)['win'];
-		$win ++;
-		$this->account->set($user, array_merge($this->account->get($user), array('win' => $win)));
+		$nwin++;
+		$this->account->set($user, array_merge($this->account->get($user), array('win' => $nwin)));
 		return true;
 	}
 
 	//負ける
 	public function grantLose($user){
 		$lose = $this->account->get($user)['lose'];
-		$lose++;
-		$this->account->set($user, array_merge($this->account->get($user), array('lose' => $lose)));
+		$nlose++;
+		$this->account->set($user, array_merge($this->account->get($user), array('lose' => $nlose)));
 		return true;
 	}
 	
 	//経験値
 	public function grantExp($user,$exp){
-		$exp = $this->account->get($user)['exp'];
-		$exp++;
-		$this->account->set($user, array_merge($this->account->get($user), array('exp' => $exp)));
+		$nexp = $this->account->get($user)['exp'];
+		$nexp += $exp;
+		$this->account->set($user, array_merge($this->account->get($user), array('exp' => $nexp)));
 		return true;
 	}
 }
