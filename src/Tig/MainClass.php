@@ -12,13 +12,7 @@ use pocketmine\permission\ServerOperator;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 use pocketmine\math\Vector3;
-
-use pocketmine\event\player\PlayerMoveEvent;
-use pocketmine\event\player\PlayerInteractEvent;
-use pocketmine\event\player\PlayerCommandPreprocessEvent;
-use pocketmine\event\block\BlockBreakEvent;
-use pocketmine\event\block\BlockPlaceEvent;
-
+use Tig\Account;
 
 class MainClass extends PluginBase implements Listener {
     
@@ -29,12 +23,24 @@ class MainClass extends PluginBase implements Listener {
 			
         $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);//イベント登録
-		$this->status = true;
+		$this->status = true;//デフォルトで有効に
     }
 	
     //サーバー停止時の処理//プラグインが無効になると実行されるメソッド
     public function onDisable() {
     }
+	
+	//以下イベント処理
+	
+	//ログイン
+	
+	
+	//プレーヤー入室
+	
+	//プレーヤーダメージ
+	
+	//プレーヤー死亡
+	
 	
 	//コマンド処理
 	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
@@ -43,28 +49,30 @@ class MainClass extends PluginBase implements Listener {
 				if(!isset($args[0])){return false;}//例外回避
 				switch ($args[0]) {
 					case "start":
-						$this->status = true;//ステータス　false 普通,　true PvP
+						$this->status = true;//ステータス　false 普通,　true 鬼ごっこ
 						$this->AllKick();
-						$sender->sendMessage("[鬼ごっこ] 鬼ごっこを開始しました");
+						$sender->sendMessage("[鬼ごっこ] 鬼ごっこを開始します");
 						return true;
 					break;
 					case "stop":
-						
+						$this->status = false;//ステータス　false 普通,　true 鬼ごっこ
+						$this->AllKick();
+						$sender->sendMessage("[鬼ごっこ] 鬼ごっこを終了しました");
 						return true;
 					break;
 					case "stat":
-						
+						//あとで実装
 						return true;
 					break;
 				}
 				return true;
 			break;
 			case "buy":
-				
+				//Shop.phpに回す
 				return true;
 			break;
 			case "stat":
-				
+				//あとで実装
 				return true;
 			break;
 		}
