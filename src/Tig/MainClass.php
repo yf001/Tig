@@ -14,6 +14,11 @@ use pocketmine\utils\TextFormat;
 use pocketmine\math\Vector3;
 use Tig\Account;
 
+use pocketmine\event\player\PlayerLoginEvent;
+use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerQuitEvent;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
+
 class MainClass extends PluginBase implements Listener {
     
     //サーバー開始時の処理//プラグインが有効になると実行されるメソッド
@@ -46,10 +51,12 @@ class MainClass extends PluginBase implements Listener {
 		}
 	}
 	//プレーヤーダメージ
-	public function onDamage(EntityDamageByEntityEvent $event){
-		$this->damager = $event->getDamager()->getName(); //そのダメージを与えた人
-		$this->s = $event->getEntity()->getName();//喰らった人
-		//処理
+	public function onDamageByEntity(EntityDamageByEntityEvent $event){
+		if($event instanceof EntityDamageByEntityEvent){//エラー回避
+			$this->damager = $event->getDamager()->getName(); //そのダメージを与えた人
+			$this->s = $event->getEntity()->getName();//喰らった人
+			//ここに処理を書いていく
+		}
 	}
 	//プレーヤー死亡
 	//あとで
