@@ -1,4 +1,4 @@
 onigo
 =====
 
-A PocketMine plugin
+鬼ごっこプラグイン
